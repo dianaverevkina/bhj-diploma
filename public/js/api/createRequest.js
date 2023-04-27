@@ -14,9 +14,9 @@ const createRequest = (options = {}) => {
   fetch(options.url, {
     method: options.method,
     body: options.method === 'GET' ? null : formData,
-    headers: {  
-      "Content-type": "application/json; charset=utf-8"
-    }, 
+    // headers: {  
+    //   "Content-type": "application/json; charset=utf-8"
+    // }, 
   })
   .then(response => response.json())
   .then((result) => {
