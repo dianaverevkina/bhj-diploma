@@ -13,7 +13,14 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
+    this.element = element ? element : this.showError();
 
+    this.registerEvents();
+  }
+
+  showError() {
+    let error = new Error('Такого элемента не существует');
+    throw error;
   }
 
   /**
@@ -21,7 +28,10 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-
+    this.element.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.submit();
+    })
   }
 
   /**
@@ -32,7 +42,14 @@ class AsyncForm {
    * }
    * */
   getData() {
+    const formData = new FormData(this.element);
+    let dataObj = {};
 
+    for (let [ key, value ] of formData.entries()) {
+      dataObj[key] = value;
+    }
+
+    return dataObj;
   }
 
   onSubmit(options){
@@ -44,6 +61,7 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-
+    let data = this.getData();
+    this.onSubmit(data);
   }
 }
