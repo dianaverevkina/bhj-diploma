@@ -14,7 +14,7 @@ class AsyncForm {
    * */
   constructor(element) {
     this.element = element ? element : this.showError();
-
+    this.modalId = this.element.closest('.modal').dataset.modalId;
     this.registerEvents();
   }
 
