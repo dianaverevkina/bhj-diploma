@@ -51,7 +51,7 @@ class App {
     this.modals = {
       register: new Modal(document.querySelector("#modal-register")),
       login: new Modal(document.querySelector("#modal-login")),
-      createAccount: new Modal(document.querySelector("#modal-new-account")),
+      newAccount: new Modal(document.querySelector("#modal-new-account")),
       newIncome: new Modal(document.querySelector("#modal-new-income")),
       newExpense: new Modal(document.querySelector("#modal-new-expense")),
     };

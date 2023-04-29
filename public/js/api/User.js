@@ -33,7 +33,7 @@ class User {
       return undefined;
     }
 
-    return currentUser;
+    return JSON.parse(currentUser);
   }
 
   /**
