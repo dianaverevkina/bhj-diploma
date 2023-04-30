@@ -18,19 +18,19 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-    const bodyElement = document.querySelector('body');
-    const sidebarToggle = bodyElement.querySelector('.sidebar-toggle');
+    const bodyElement = document.querySelector( 'body' );
+    const sidebarToggle = bodyElement.querySelector( '.sidebar-toggle' );
 
     function openSidebar() {
-      if (bodyElement.classList.contains('sidebar-open')) {
-        bodyElement.classList.remove('sidebar-open', 'sidebar-collapse');
+      if ( bodyElement.classList.contains( 'sidebar-open' ) ) {
+        bodyElement.classList.remove( 'sidebar-open', 'sidebar-collapse' );
         return;
       }
 
-      bodyElement.classList.add('sidebar-open', 'sidebar-collapse');
+      bodyElement.classList.add( 'sidebar-open', 'sidebar-collapse' );
     }
 
-    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarToggle.addEventListener( 'click', openSidebar );
   }
 
   /**
@@ -41,29 +41,29 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-    const sidebarMenu = document.querySelector('.sidebar-menu');
-    const menuItems = sidebarMenu.querySelectorAll('.menu-item');
+    const sidebarMenu = document.querySelector( '.sidebar-menu' );
+    const menuItems = sidebarMenu.querySelectorAll( '.menu-item' );
 
     function openAuthModal() {
-      if (this.classList.contains('menu-item_login')) {
-        App.getModal('login').open();
+      if ( this.classList.contains( 'menu-item_login' ) ) {
+        App.getModal( 'login' ).open();
       }  
       
-      if (this.classList.contains('menu-item_register')) {
-        App.getModal('register').open();
+      if ( this.classList.contains( 'menu-item_register' ) ) {
+        App.getModal( 'register' ).open();
       }
       
-      if (this.classList.contains('menu-item_logout')) {
+      if ( this.classList.contains('menu-item_logout') ) {
         User.logout(response => {
-          if (response.success) {
-            App.setState('init');
+          if ( response.success ) {
+            App.setState( 'init' );
           }
         })
       }
     }
     
     menuItems.forEach(menuItem => {
-      menuItem.addEventListener('click', openAuthModal);
+      menuItem.addEventListener( 'click', openAuthModal );
     })
   }
 }
