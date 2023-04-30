@@ -7,9 +7,9 @@ class CreateTransactionForm extends AsyncForm {
    * Вызывает родительский конструктор и
    * метод renderAccountsList
    * */
-  constructor(element) {
-    super(element)
-    this.accountSelect = this.element.querySelector('.accounts-select');
+  constructor( element ) {
+    super( element );
+    this.accountSelect = this.element.querySelector( '.accounts-select' );
 
     this.renderAccountsList();
   }
@@ -19,16 +19,20 @@ class CreateTransactionForm extends AsyncForm {
    * Обновляет в форме всплывающего окна выпадающий список
    * */
   renderAccountsList() {
-    console.log(this.modalId);
-    // debugger;
     let currentUser = User.current();
-    Account.list(currentUser, (response) => {
+    Account.list(currentUser, ( response ) => {
       if (response.success) {
-        response.data.forEach(account => this.renderAccount(account));
+        this.removeAccountsList();
+        response.data.forEach( account => this.renderAccount(account) );
       } else {
-        alert(response.error);
+        console.log( response.error );
       }
     })
+  }
+
+  removeAccountsList() {
+    let options = this.accountSelect.querySelectorAll( 'option' );
+    options.forEach( option => option.remove() );
   }
 
   renderAccount(element) {
@@ -44,9 +48,8 @@ class CreateTransactionForm extends AsyncForm {
    * в котором находится форма
    * */
   onSubmit(data) {
-    // let modalId = this.element.closest('.modal').dataset.modalId;
-    Transaction.create(data, (response) => {
-      if (response.success) {
+    Transaction.create(data, ( response ) => {
+      if ( response.success ) {
         this.element.reset();
         App.getModal(this.modalId).close();
         App.update();

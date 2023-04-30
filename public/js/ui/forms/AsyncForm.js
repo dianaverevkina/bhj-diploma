@@ -12,14 +12,14 @@ class AsyncForm {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor(element) {
+  constructor( element ) {
     this.element = element ? element : this.showError();
-    this.modalId = this.element.closest('.modal').dataset.modalId;
+    this.modalId = this.element.closest( '.modal' ).dataset.modalId;
     this.registerEvents();
   }
 
   showError() {
-    let error = new Error('Такого элемента не существует');
+    let error = new Error( 'Такого элемента не существует' );
     throw error;
   }
 
@@ -46,7 +46,7 @@ class AsyncForm {
     let dataObj = {};
 
     for (let [ key, value ] of formData.entries()) {
-      dataObj[key] = value;
+      dataObj[ key ] = value;
     }
 
     return dataObj;
@@ -62,6 +62,6 @@ class AsyncForm {
    * */
   submit() {
     let data = this.getData();
-    this.onSubmit(data);
+    this.onSubmit( data );
   }
 }

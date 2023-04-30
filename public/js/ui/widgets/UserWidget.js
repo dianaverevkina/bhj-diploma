@@ -11,12 +11,12 @@ class UserWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor(element){
+  constructor( element ){
     this.element = element ? element : this.showError();
   }
 
   showError() {
-    let error = new Error('Такого элемента не существует');
+    let error = new Error( 'Такого элемента не существует' );
     throw error;
   }
 
@@ -28,10 +28,7 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
-    const mainSidebar = document.querySelector('.main-sidebar');
-    const userName = mainSidebar.querySelector('.user-name');
-
-    let currentUser = User.current();
-    userName.textContent = currentUser.name;
+    const userName = this.element.querySelector( '.user-name' );
+    userName.textContent = User.current().name;
   }
 }
